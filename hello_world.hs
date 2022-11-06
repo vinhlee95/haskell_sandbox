@@ -75,3 +75,11 @@ ages = [20, 22, 18]
 nameAndAge = zip names ages
 _fooName = fst (nameAndAge !! 0)
 _fooAge = snd (nameAndAge !! 0)
+
+-- Tuple
+myTuple = [(1,2),(3,4),(5,6)]
+-- This would fail:
+-- my_tuple = [(1,2),(3,4),(5,6,7)]
+
+-- This also fails:
+_myTuple = [(1, 2),(3,4),(5,"six")]
