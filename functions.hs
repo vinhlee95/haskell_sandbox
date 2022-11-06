@@ -40,3 +40,7 @@ sayHello [] = "Hello there"
 sayHello (x:[]) = "Hello " ++ x
 sayHello (x:y:[]) = "Hello " ++ x ++ " and " ++ y
 sayHello (x:xs) = "Hello " ++ x ++ " and " ++ show xs
+
+-- Function with if/else statement
+validateNumber :: Int -> String
+validateNumber x = if x > 10 then "Greater than 10" else "Less than 10"
