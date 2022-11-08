@@ -44,3 +44,75 @@ sayHello (x:xs) = "Hello " ++ x ++ " and " ++ show xs
 -- Function with if/else statement
 validateNumber :: Int -> String
 validateNumber x = if x > 10 then "Greater than 10" else "Less than 10"
+
+
+-- Pattern matching
+factorial :: (Integral a) => a -> a
+factorial 0 = 1
+factorial n = n * factorial (n - 1)
+
+-- Pattern matching and list comprehensions
+myListOfTuple :: [(Int, Int)]
+myListOfTuple = [(1, 2), (3, 4), (5, 6)]
+
+sumItems :: [Int]
+sumItems = [a + b | (a, b) <- myListOfTuple] -- [3, 7, 11]
+
+-- Pattern matching and tuples
+addVectors :: (Num a) => (a, a) -> (a, a) -> (a, a)
+addVectors (x1, y1) (x2, y2) = (x1 + x2, y1 + y2)
+
+myVector = addVectors (1, 2) (3, 4) -- (4, 6)
+
+-- Reimplement sum function
+sum' :: (Num a) => [a] -> a
+sum' [] = 0
+sum' (x:xs) = x + sum' xs
+
+-- Reimplement compare function
+myCompare :: (Ord a) => a -> a -> Ordering
+a `myCompare` b
+  | a > b = GT
+  | a == b = EQ
+  | otherwise = LT
+
+-- Where keyword
+bmiTell :: (RealFloat a) => a -> a -> String
+bmiTell weight height
+  | bmi <= skinny = "You're underweight"
+  | bmi <= normal = "You're normal"
+  | bmi <= fat = "You're overweight"
+  | otherwise = "You're good"
+  where bmi = weight / height ^ 2
+        skinny = 18.5
+        normal = 25.0
+        fat = 30.0
+
+{-
+  Let bindings
+-}
+square3 = let x = 3 in x * x
+total = (let (x, y, z) = (1, 2, 3) in x * y * z) * 100 -- 600
+
+{-
+  Case expression
+  Syntax: case expression of pattern -> result
+                           pattern -> result
+                           pattern -> result
+                           ...
+-}
+-- Typical pattern matching
+head' :: [a] -> a
+head' [] = error "Can't call head on an empty list!"
+head' (x:_) = x
+
+-- Case expression
+head'' :: [a] -> a
+head'' xs = case xs of [] -> error "No head for empty list!"
+                       (x:_) -> x
+
+-- Add typeclass for a
+describeList :: [a] -> String
+describeList xs = case xs of [] -> "Empty list"
+                             [x] -> "A singleton list"
+                             xs -> "A longer list of " ++ show (length xs) ++ "elements"
