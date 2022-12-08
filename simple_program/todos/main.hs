@@ -3,7 +3,6 @@ import System.IO
 import Data.Maybe (isNothing)
 import Data.List (intercalate, delete)
 import System.Directory
-import Data.List.Extra
 
 
 {-- 
